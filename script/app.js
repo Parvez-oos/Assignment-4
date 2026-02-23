@@ -187,5 +187,17 @@ function renderJobs() {
           container.appendChild(card);
         });
 }
-renderJobs ();
+renderJobs();
 
+/* ==================== logic functions ==================== */
+
+function updateDashboardCounts() {
+        const total = jobs.length;
+        const interview = jobs.filter((j) => job.status === "interview").length;
+        const rejected = jobs.filter((j) => job.status === "rejected").length;
+
+        document.getElementById("totalCount").innerText = total;
+        document.getElementById("interviewCount").innerText = interview;
+        document.getElementById("rejectedCount").innerText = rejected;
+}
+updateDashboardCounts();
