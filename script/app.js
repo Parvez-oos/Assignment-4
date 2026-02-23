@@ -145,7 +145,7 @@ function renderJobs() {
           card.className =
             "card bg-white border border-gray-100 shadow-sm rounded-lg relative group transition-all hover:shadow-md";
 
-          // Pill Status Logic
+          
           let statusBadge = `<span class="px-2 py-0.5 text-[10px] font-bold rounded bg-gray-100 text-gray-600 uppercase tracking-wider">NOT APPLIED</span>`;
           if (job.status === "interview") {
             statusBadge = `<span class="px-2 py-0.5 text-[10px] font-bold rounded bg-teal-50 text-teal-600 border border-teal-200 uppercase tracking-wider">INTERVIEW</span>`;
@@ -187,20 +187,20 @@ function renderJobs() {
           container.appendChild(card);
         });
 }
-renderJobs();
+
 
 /* ==================== logic functions ==================== */
 
 function updateDashboardCounts() {
         const total = jobs.length;
-        const interview = jobs.filter((j) => job.status === "interview").length;
-        const rejected = jobs.filter((j) => job.status === "rejected").length;
+        const interview = jobs.filter((j) => j.status === "interview").length;
+        const rejected = jobs.filter((j) => j.status === "rejected").length;
 
         document.getElementById("totalCount").innerText = total;
         document.getElementById("interviewCount").innerText = interview;
         document.getElementById("rejectedCount").innerText = rejected;
 }
-updateDashboardCounts();
+
 
 function updateStatus(id, status) {
     const job = jobs.find((j) => j.id === id);
@@ -218,3 +218,18 @@ function deleteJob(id) {
     renderJobs();
     updateDashboardCounts();
 }
+
+function switchTab(tab) {
+    currentTab = tab;
+    document.querySelectorAll(".tab-btn").forEach((btn) => {
+        if (btn.dataset.tab === tab) {
+            btn.className = "tab-btn px-5 py-2 text-xs font-semibold rounded bg-blue-500 text-white transition-all";} else {
+            btn.className = "tab-btn px-5 py-2 text-xs font-semibold rounded bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 transition-all";
+            }
+});
+    renderJobs();
+}
+
+/* ==================== Initial Render ==================== */
+updateDashboardCounts();
+renderJobs();
