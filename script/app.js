@@ -201,3 +201,14 @@ function updateDashboardCounts() {
         document.getElementById("rejectedCount").innerText = rejected;
 }
 updateDashboardCounts();
+
+function updateStatus(id, status) {
+    const job = jobs.find((j) => j.id === id);
+    if (job.status === status) {
+        job.status = "none";
+    } else {
+        job.status = status;
+    }
+    renderJobs();
+    updateDashboardCounts();
+}
