@@ -212,3 +212,9 @@ function updateStatus(id, status) {
     renderJobs();
     updateDashboardCounts();
 }
+
+function deleteJob(id) {
+    jobs = jobs.filter((job) => job.id !== id);
+    renderJobs();
+    updateDashboardCounts();
+}
